@@ -1,5 +1,5 @@
 [package]
-name = "termagotchi"
+name = "terminalgotchi"
 version = "20260403.0.1"
 edition = "2021"
 description = "A terminal companion that grows with you"
@@ -11,7 +11,7 @@ keywords = ["terminal", "pet", "cli", "tamagotchi", "developer-tools"]
 categories = ["command-line-utilities"]
 
 [[bin]]
-name = "termagotchi"
+name = "terminalgotchi"
 path = "src/main.rs"
 
 [dependencies]

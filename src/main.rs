@@ -10,7 +10,7 @@ use anyhow::Result;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "termagotchi")]
+#[command(name = "terminalgotchi")]
 #[command(about = "A terminal companion that grows with you")]
 struct Cli {
     #[command(subcommand)]
@@ -128,30 +128,30 @@ fn main() -> Result<()> {
 fn print_hook(shell: &str) {
     match shell {
         "bash" => println!(r#"# Add to ~/.bashrc
-_termagotchi_hook() {{
+_terminalgotchi_hook() {{
     local cmd
     cmd=$(HISTTIMEFORMAT= history 1 | sed 's/^ *[0-9]* *//')
-    termagotchi feed-cmd "$cmd" 2>/dev/null &
+    terminalgotchi feed-cmd "$cmd" 2>/dev/null &
 }}
-PROMPT_COMMAND="_termagotchi_hook;${{PROMPT_COMMAND}}"
+PROMPT_COMMAND="_terminalgotchi_hook;${{PROMPT_COMMAND}}"
 "#),
         "zsh" => println!(r#"# Add to ~/.zshrc
-_termagotchi_hook() {{
+_terminalgotchi_hook() {{
     local cmd
     cmd=$(fc -ln -1)
-    termagotchi feed-cmd "$cmd" 2>/dev/null &
+    terminalgotchi feed-cmd "$cmd" 2>/dev/null &
 }}
-precmd_functions+=(_termagotchi_hook)
+precmd_functions+=(_terminalgotchi_hook)
 "#),
         "nu" | "nushell" => println!(r#"# Add to ~/.config/nushell/config.nu
 $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {{||
     let last = (history | last 1 | get command.0)
-    termagotchi feed-cmd $last
+    terminalgotchi feed-cmd $last
 }})
 "#),
         "fish" => println!(r#"# Add to ~/.config/fish/config.fish
-function _termagotchi_hook --on-event fish_postexec
-    termagotchi feed-cmd "$argv" 2>/dev/null &
+function _terminalgotchi_hook --on-event fish_postexec
+    terminalgotchi feed-cmd "$argv" 2>/dev/null &
 end
 "#),
         _ => {
@@ -159,7 +159,7 @@ end
             eprintln!("Supported: bash, zsh, nu, fish");
             eprintln!();
             eprintln!("The hook should run after each command:");
-            eprintln!("  termagotchi feed-cmd \"<last command>\"");
+            eprintln!("  terminalgotchi feed-cmd \"<last command>\"");
         }
     }
 }
