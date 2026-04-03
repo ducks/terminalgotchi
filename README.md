@@ -1,4 +1,4 @@
-# termagotchi
+# terminalgotchi
 
 A terminal companion that grows with you. Your dev activity feeds it XP.
 
@@ -6,12 +6,12 @@ A terminal companion that grows with you. Your dev activity feeds it XP.
 
 Your username is hashed to deterministically generate a companion creature with a species, rarity, eyes, hat, and base stats. The creature is permanent -- you can't reroll.
 
-As you work, your shell hook feeds commands to termagotchi. `cargo test` gives DEBUGGING XP. `git commit` gives PATIENCE XP. `rm -rf` gives CHAOS XP. The stats grow over time based on how you actually code.
+As you work, your shell hook feeds commands to terminalgotchi. `cargo test` gives DEBUGGING XP. `git commit` gives PATIENCE XP. `rm -rf` gives CHAOS XP. The stats grow over time based on how you actually code.
 
 ## Install
 
 ```bash
-cargo install termagotchi
+cargo install terminalgotchi
 ```
 
 Requires Rust 1.88+.
@@ -21,46 +21,46 @@ Requires Rust 1.88+.
 ### 1. See your companion
 
 ```bash
-termagotchi
+terminalgotchi
 ```
 
 ### 2. Install the shell hook
 
 ```bash
 # Print hook code for your shell
-termagotchi hook bash   # or: zsh, nu, fish
+terminalgotchi hook bash   # or: zsh, nu, fish
 
 # Then add the output to your shell config
-termagotchi hook nu >> ~/.config/nushell/config.nu
+terminalgotchi hook nu >> ~/.config/nushell/config.nu
 ```
 
-The hook silently runs `termagotchi feed-cmd` after every command. No output, no delay.
+The hook silently runs `terminalgotchi feed-cmd` after every command. No output, no delay.
 
 ### 3. Watch it grow
 
 ```bash
 # Full stat card
-termagotchi card
+terminalgotchi card
 
 # XP breakdown
-termagotchi stats
+terminalgotchi stats
 
 # Animated idle
-termagotchi watch
+terminalgotchi watch
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `termagotchi` | Show your companion card (default) |
-| `termagotchi card` | Same as above |
-| `termagotchi watch` | Animated idle loop |
-| `termagotchi stats` | XP and growth breakdown |
-| `termagotchi feed <activity>` | Manual XP: debug, commit, chaos, read, hack |
-| `termagotchi feed-cmd <cmd>` | Auto-detect activity from a command |
-| `termagotchi hook [shell]` | Print shell hook code |
-| `termagotchi reset` | Clear all XP |
+| `terminalgotchi` | Show your companion card (default) |
+| `terminalgotchi card` | Same as above |
+| `terminalgotchi watch` | Animated idle loop |
+| `terminalgotchi stats` | XP and growth breakdown |
+| `terminalgotchi feed <activity>` | Manual XP: debug, commit, chaos, read, hack |
+| `terminalgotchi feed-cmd <cmd>` | Auto-detect activity from a command |
+| `terminalgotchi hook [shell]` | Print shell hook code |
+| `terminalgotchi reset` | Clear all XP |
 
 ## Activity Mapping
 
@@ -84,7 +84,7 @@ Non-common creatures get hats. 1% chance of shiny.
 
 ## Data
 
-XP stored in `~/.local/share/termagotchi/growth.db` (SQLite).
+XP stored in `~/.local/share/terminalgotchi/growth.db` (SQLite).
 
 Creature is not stored -- it's regenerated from your username hash every time. You can't fake a rarity by editing files.
 
@@ -92,10 +92,10 @@ Creature is not stored -- it's regenerated from your username hash every time. Y
 
 ```bash
 # Use a different seed (not your username)
-termagotchi --seed mycustomseed
+terminalgotchi --seed mycustomseed
 
 # Works with all commands
-termagotchi --seed mycustomseed watch
+terminalgotchi --seed mycustomseed watch
 ```
 
 ## License

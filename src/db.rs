@@ -108,7 +108,7 @@ impl Database {
 fn db_path() -> Result<PathBuf> {
     let base = dirs::data_local_dir()
         .ok_or_else(|| anyhow::anyhow!("Could not find data directory"))?;
-    Ok(base.join("termagotchi").join("growth.db"))
+    Ok(base.join("terminalgotchi").join("growth.db"))
 }
 
 #[cfg(test)]
