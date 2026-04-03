@@ -1,0 +1,25 @@
+[package]
+name = "termagotchi"
+version = "20260403.0.1"
+edition = "2021"
+description = "A terminal companion that grows with you"
+license = "MIT"
+
+[[bin]]
+name = "termagotchi"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+dirs = "5.0"
+rusqlite = { version = "0.32", features = ["bundled"] }
+crossterm = "0.28"
+ratatui = "0.29"
+anyhow = "1.0"
+ctrlc = "3.4"
+
+[dev-dependencies]
+tempfile = "3.0"
