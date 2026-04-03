@@ -4,6 +4,11 @@ version = "20260403.0.1"
 edition = "2021"
 description = "A terminal companion that grows with you"
 license = "MIT"
+repository = "https://github.com/ducks/termagotchi"
+homepage = "https://github.com/ducks/termagotchi"
+readme = "README.md"
+keywords = ["terminal", "pet", "cli", "tamagotchi", "developer-tools"]
+categories = ["command-line-utilities"]
 
 [[bin]]
 name = "termagotchi"
