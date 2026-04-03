@@ -2,6 +2,7 @@ mod creature;
 mod db;
 mod display;
 mod growth;
+mod quips;
 mod sprites;
 mod stats;
 
@@ -78,8 +79,11 @@ fn main() -> Result<()> {
             let stat = growth::activity_to_stat(&activity);
             match stat {
                 Some(stat_name) => {
+                    let creature = creature::roll(&seed);
                     let amount = growth::xp_for_activity(&activity);
                     db.add_xp(&seed, &stat_name, amount)?;
+                    let q = quips::quip_for_stat(stat_name);
+                    println!("  {} \x1b[2m\"{}\"\x1b[0m", creature.face(), q);
                     println!("  +{} {} XP", amount, stat_name);
                 }
                 None => {
@@ -92,9 +96,12 @@ fn main() -> Result<()> {
             let cmd_str = command.join(" ");
             if let Some(activity) = growth::command_to_activity(&cmd_str) {
                 if let Some(stat) = growth::activity_to_stat(activity) {
+                    let creature = creature::roll(&seed);
                     let amount = growth::xp_for_activity(activity);
                     db.add_xp(&seed, &stat, amount)?;
-                    // Silent by default -- shell hooks shouldn't spam
+                    // Show a brief quip -- shell hooks can pipe to /dev/null if noisy
+                    let q = quips::quip_for_stat(stat);
+                    println!("  {} \x1b[2m\"{}\"\x1b[0m  +{} {}", creature.face(), q, amount, stat);
                 }
             }
         }
